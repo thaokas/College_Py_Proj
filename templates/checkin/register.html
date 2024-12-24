@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="{% url 'polls:add' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="personal_fig">Upload your face picture</label>
+    <input type="file", name="personal_fig">
+    
+    <label for="uid">Insert your student uid</label>
+    <input type="text", name="uid">
+    
+    <label for="name">Insert your name</label>
+    <input type="text", name="name">
+    
+    <button type="submit">Submit</button>
+</form>
+
+
+</body>
+</html>

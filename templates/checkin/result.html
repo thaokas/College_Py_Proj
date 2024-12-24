@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p>课程应到 {{ class_size }}人，今日出勤 {{ attendance_num }}人，缺勤 {{ absence_num }}人</p>
+
+<p>旁听学生 {{ other_listener }}人</p>
+
+{% if absence_mem_list %}
+    <p>缺勤成员：</p>
+    <ul>
+    {% for mem in absence_mem_list %}
+        <li>姓名：{{ mem.std_name }} 学号：{{ mem.std_uid }}</li>
+    {% endfor %}
+    </ul>
+    
+    {% if substitute_mem_list %}
+    <p>代课嫌疑人员：</p>
+        <ul>
+        {% for mem in substitute_mem_list %}
+            <li>姓名：{{ mem.std_name }} 学号：{{ mem.std_uid }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endif %}
+
+</body>
+</html>

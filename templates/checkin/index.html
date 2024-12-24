@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<form action="{% url 'checkin:result' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+        <label for="checkin_fig">Upload checkin picture<input type="file", name="checkin_fig"></label>
+    </div>
+    
+    <div>
+        <label for="course_id">Insert Course id<input type="text", name="course_id"></label>
+    </div>
+    
+    <div>
+        <label for="course_name">Insert Course name<input type="text", name="course_name"></label>
+    </div>
+    
+    <button type="submit">Submit</button>
+</form>
+    
+<a href="{% url 'checkin:register' %}" target="_self">register a face</a>
+
+
+</body>
+</html>
