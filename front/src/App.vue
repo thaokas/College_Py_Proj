@@ -21,9 +21,7 @@ const route = useRoute()
     </div>
   </main>
 
-
-
-
+  
 </template>
 
 <style scoped>

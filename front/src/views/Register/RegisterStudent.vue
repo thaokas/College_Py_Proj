@@ -51,17 +51,22 @@ export default defineComponent({
       }
 
       const formData = new FormData()
-      formData.append('studentId', studentId.value)
-      formData.append('studentName', studentName.value)
-      formData.append('photo', photo.value)
+      formData.append('std_id', studentId.value)
+      formData.append('std_name', studentName.value)
+      formData.append('std_img', photo.value)
 
       try {
-        const response = await axios.post('/api/register/student', formData, {
+        const response = await axios.post('/api/register/student/', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
         })
-        message.value = '请求成功: ' + response.data.message
+        console.log(response.data.result)
+        if (response.data.result === 'SUCCESS') {
+          message.value = '注册成功: ' + response.data.message
+        } else if (response.data.result === 'FAILED') {
+          message.value = '注册失败: ' + response.data.message
+        }
       } catch (error) {
         console.error('POST请求发送失败:', error)
         message.value = '请求失败'

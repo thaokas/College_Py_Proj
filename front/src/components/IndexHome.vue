@@ -1,13 +1,11 @@
 <template>
   <main>
-
     <div>
       <button @click="goToCheckin" class="custom-button">Check-In</button>
     </div>
     <div>
       <button @click="goToRegister" class="custom-button">Register</button>
     </div>
-
   </main>
 </template>
 
@@ -29,7 +27,7 @@ function goToCheckin() {
 main {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 50px;
   margin-top: 20px;
 }
 
@@ -37,12 +35,13 @@ main {
   background-color: #42b983; /* 绿色背景 */
   color: white; /* 白色文字 */
   border: none; /* 无边框 */
-  padding: 10px 20px; /* 内边距 */
-  font-size: 16px; /* 字体大小 */
+  padding: 15px 30px; /* 内边距 */
+  font-size: 18px; /* 字体大小 */
   border-radius: 5px; /* 圆角 */
   cursor: pointer; /* 鼠标悬停时显示为指针 */
   transition: background-color 0.3s ease, transform 0.3s ease; /* 过渡效果 */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 阴影 */
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .custom-button:hover {

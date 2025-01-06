@@ -19,14 +19,14 @@ class Course(models.Model):
     course_description = models.TextField()
 
     def __str__(self):
-        return str(self.course_id) + self.course_name + str(self.course_period) + str(self.course_description)
+        return str(self.course_id) + self.course_name + str(self.course_description)
 
 
 class Enrollment(models.Model):
     enrollment_id = models.IntegerField(primary_key=True)
     Student_Id = models.ForeignKey(Student, on_delete=models.CASCADE)
     Course_Id = models.ForeignKey(Course, on_delete=models.CASCADE)
-    Grade = models.IntegerField()
+    Grade = models.DecimalField(max_digits=10, decimal_places=2, null=True)
 
     def __str__(self):
         return str(self.Student_Id) + str(self.Course_Id) + str(self.Grade)

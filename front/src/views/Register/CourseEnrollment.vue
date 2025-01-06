@@ -55,14 +55,18 @@ export default defineComponent({
       formData.append('studentName', studentName.value)
 
       try {
-        const response = await axios.post('/api/select/course', formData, {
+        const response = await axios.post('/api/register/enrollment/', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
         })
-        message.value = '请求成功: ' + response.data.message
+        if (response.data.result === 'SUCCESS') {
+          message.value = '注册成功: ' + response.data.message
+        } else if (response.data.result === 'FAILED') {
+          message.value = '注册失败: ' + response.data.message
+        }
       } catch (error) {
-        console.error('请求失败:', error)
+        console.error('POST请求发送失败:', error)
         message.value = '请求失败'
       }
     }
@@ -94,10 +98,6 @@ export default defineComponent({
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
   transition: transform 0.3s ease;
-}
-
-.register-form:hover {
-  transform: translateY(-5px);
 }
 
 h1 {

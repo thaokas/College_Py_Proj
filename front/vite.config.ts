@@ -17,10 +17,10 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/api/checkin': {
-        target: 'http://localhost:8000/checkin',
+      '/api': {
+        target: 'http://localhost:8000',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/checkin/, '')
+        rewrite: (path) => path.replace(/^\/api/, '')
       },
     },
   },

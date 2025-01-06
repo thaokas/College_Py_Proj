@@ -18,6 +18,9 @@
       <button type="submit" class="submit-button">Submit</button>
     </form>
   </div>
+  <div>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script lang="ts">
@@ -50,21 +53,27 @@ export default defineComponent({
       }
 
       const formDataToSend = new FormData()
-      formDataToSend.append('photo', formData.value.photo)
-      formDataToSend.append('number', formData.value.number)
-      formDataToSend.append('text', formData.value.text)
+      formDataToSend.append('checkinImg', formData.value.photo)
+      formDataToSend.append('courseId', formData.value.number)
+      formDataToSend.append('courseName', formData.value.text)
 
       try {
-        const response = await axios.post('/api/checkin', formDataToSend, {
+        const response = await axios.post('/api/checkin/result/', formDataToSend, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
         })
         console.log('Success:', response.data)
-        router.push({ name: "CheckInResult", state: { result : response.data}})
+        if (response.data.request_result === 'SUCCESS') {
+          console.log(response.data.request_message)
+          console.log(response.data)
+          router.push({ name: "CheckInResult", params: { result: JSON.stringify(response.data) }})
+        } else if (response.data.request_result === 'FAILED') {
+          alert(response.data.request_message)
+        }
       } catch (error) {
         console.error('Error:', error)
-        alert('Check-in failed. Please try again.')
+        alert('Check-in failed.')
       }
     }
 

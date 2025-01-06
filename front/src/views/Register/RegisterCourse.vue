@@ -49,15 +49,20 @@ export default defineComponent({
       formData.append('courseInfo', courseInfo.value)
 
       try {
-        const response = await axios.post('/api/register/course', formData, {
+        const response = await axios.post('/api/register/course/', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
         })
-        message.value = '注册课程成功: ' + response.data.message
+        console.log(response.data.result)
+        if (response.data.result === 'SUCCESS') {
+          message.value = '注册成功: ' + response.data.message
+        } else if (response.data.result === 'FAILED') {
+          message.value = '注册失败: ' + response.data.message
+        }
       } catch (error) {
-        console.error('注册课程失败:', error)
-        message.value = '注册课程失败'
+        console.error('POST请求发送失败:', error)
+        message.value = '请求失败'
       }
     }
 
