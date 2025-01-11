@@ -1,3 +1,9 @@
 db.sqlite3
 */migrations
 */node_modules
+*.pptx
+*.ppt
+*.docx
+*.doc
+*.png
+*.jpg

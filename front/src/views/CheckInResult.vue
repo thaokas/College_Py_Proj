@@ -62,7 +62,7 @@ export default defineComponent({
 
     let result = null
     try {
-      result = JSON.parse(decodeURIComponent(route.params.result))
+      result = JSON.parse(route.params.result)
     } catch (error) {
       console.error('Error parsing result:', error)
       alert('Failed to parse result. Redirecting back to Check-In Form.')

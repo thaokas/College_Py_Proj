@@ -17,6 +17,14 @@ from insightface.app import FaceAnalysis
 VECTOR_DB_CLIENT = MilvusClient(uri="http://localhost:19530", token="root:Milvus")
 VECTOR_DB_NAME = "all_faces_db"
 
+if VECTOR_DB_CLIENT.has_collection(collection_name=VECTOR_DB_NAME):
+    VECTOR_DB_CLIENT.drop_collection(collection_name=VECTOR_DB_NAME)
+
+VECTOR_DB_CLIENT.create_collection(
+    collection_name=VECTOR_DB_NAME,
+    dimension=512
+)
+
 FACE_EMBEDDING = FaceAnalysis(name='buffalo_l', providers=['CUDAExecutionProvider'])
 FACE_EMBEDDING.prepare(ctx_id=0, det_size=(640, 640))
 

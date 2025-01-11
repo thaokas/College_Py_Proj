@@ -4,7 +4,6 @@ import Index from './components/IndexHome.vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-
 </script>
 
 <template>
@@ -20,8 +19,6 @@ const route = useRoute()
       <router-view ></router-view>
     </div>
   </main>
-
-  
 </template>
 
 <style scoped>
